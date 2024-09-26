@@ -57,4 +57,25 @@ const deleteTask = async (req, res) => {
   }
 };
 
-module.exports = { getAllTast, addTask, deleteTask };
+const updateTask = async (req, res) => {
+  try {
+    const updatedResult=await taskSchema.findOneAndUpdate({ _id: req.params.id },{...req.body.update});
+    if(updatedResult){
+        res.status(201).json({
+            message: "task updated sucessfully",
+          });
+    }
+    else{
+        res.status(201).json({
+            message: "No task found with that ID",
+          });
+    }
+    
+  } catch (error) {
+    return res.status(404).json({
+      message: error.message,
+    });
+  }
+};
+
+module.exports = { getAllTast, addTask, deleteTask ,updateTask};
