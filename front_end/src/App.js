@@ -21,7 +21,7 @@ function App() {
     })();
   }, [render]);
 
-  const [isCompleteScreen, setIsCompleteScreen] = useState (false);
+  const [screen, setIScreen] = useState ("toDo");
 
   const [completedTodos, setCompletedTodos] = useState ([]);
   const [currentEdit,setCurrentEdit] = useState("");
@@ -64,22 +64,29 @@ function App() {
 
           <div className="btn-area">
             <button
-              className={`secondaryBtn ${isCompleteScreen === false && "active"}`}
-              onClick={() => setIsCompleteScreen(false)}
+              className={`secondaryBtn ${screen=== "toDo" && "active"}`}
+              onClick={() => setIScreen("toDo")}
             >
               Todo
             </button>
             <button
-              className={`secondaryBtn ${isCompleteScreen === true && "active"}`}
-              onClick={() => setIsCompleteScreen(true)}
+              className={`secondaryBtn ${screen=== "pending" && "active"}`}
+              onClick={() => setIScreen("pending")}
+            >
+              pending
+            </button>
+            <button
+              className={`secondaryBtn ${ screen=== "completed" && "active"}`}
+              onClick={() => setIScreen("completed")}
             >
               Completed
             </button>
           </div>
 
           <div className="todo-list">
-            {!isCompleteScreen && <RenderList status="completed" />}
-            {isCompleteScreen && <RenderList status="pending" />}
+            {screen==="toDo" && <RenderList status="inProgress" />}
+            {screen==="pending" && <RenderList status="pending" />}
+            {screen==="completed" && <RenderList status="completed" />}
           
            
           </div> 

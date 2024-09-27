@@ -20,7 +20,7 @@ const addTask = async (req, res) => {
     taskName: req.body.name,
     priority: req.body.priority,
     createdAt: new Date(),
-    status: req.body.status || "pending",
+    status: req.body.status || "inProgress",
     dueDate: new Date(req.body.dueDate),
     updatedAt: new Date(),
   });
@@ -58,8 +58,12 @@ const deleteTask = async (req, res) => {
 };
 
 const updateTask = async (req, res) => {
+  console.log(req.body.update);
+  
+
   try {
-    const updatedResult=await taskSchema.findOneAndUpdate({ _id: req.params.id },{...req.body.update});
+    const updatedResult=await taskSchema.findOneAndUpdate({ _id: req.params.id },req.body.update);
+    console.log("hi")
     if(updatedResult){
         res.status(201).json({
             message: "task updated sucessfully",
