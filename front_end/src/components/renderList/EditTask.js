@@ -7,16 +7,16 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogTitle from "@mui/material/DialogTitle";
 import MenuItem from "@mui/material/MenuItem";
 import Select from "@mui/material/Select";
-import SendIcon from '@mui/icons-material/Send';
-import CloseIcon from '@mui/icons-material/Close';
-import Stack from '@mui/material/Stack';
+import SendIcon from "@mui/icons-material/Send";
+import CloseIcon from "@mui/icons-material/Close";
+import Stack from "@mui/material/Stack";
 
 export default function FormDialog(props) {
   const [open, setOpen] = React.useState(true);
 
   const handleClose = () => {
     props.setEditable(false);
-    props.setEditableID("")
+    props.setEditableID("");
     setOpen(false);
   };
 
@@ -29,13 +29,13 @@ export default function FormDialog(props) {
           component: "form",
           onSubmit: (event) => {
             event.preventDefault();
-            props.handleUpdate(props.id,
-                props.status,
-                event.target.elements["taskName"].value,
-                event.target.elements["priority"].value,
-                event.target.elements["dueDate"].value
-                
-                )
+            props.handleUpdate(
+              props.id,
+              props.status,
+              event.target.elements["taskName"].value,
+              event.target.elements["priority"].value,
+              event.target.elements["dueDate"].value
+            );
             props.setEditable(false);
             props.setEditableID("");
             handleClose();
@@ -83,25 +83,32 @@ export default function FormDialog(props) {
           />
         </DialogContent>
         <DialogActions>
-        <Stack direction="row" spacing={3} sx={{
-    m: 3,
-    p: 2, 
-    bgcolor: 'background.paper', 
-    borderRadius: 3, 
-    boxShadow: 3, 
-    alignItems: 'center', 
-    justifyContent: 'space-between', 
-    width: '100%', 
-    maxWidth: '600px', 
-  }}>
-      <Button variant="outlined" startIcon={<CloseIcon />} onClick={handleClose}>
-      CANCEL
-      </Button>
-      <Button type="submit" variant="contained" endIcon={<SendIcon />}>
-        SUBMIT
-      </Button>
-    </Stack>
-          
+          <Stack
+            direction="row"
+            spacing={3}
+            sx={{
+              m: 3,
+              p: 2,
+              bgcolor: "background.paper",
+              borderRadius: 3,
+              boxShadow: 3,
+              alignItems: "center",
+              justifyContent: "space-between",
+              width: "100%",
+              maxWidth: "600px",
+            }}
+          >
+            <Button
+              variant="outlined"
+              startIcon={<CloseIcon />}
+              onClick={handleClose}
+            >
+              CANCEL
+            </Button>
+            <Button type="submit" variant="contained" endIcon={<SendIcon />}>
+              SUBMIT
+            </Button>
+          </Stack>
         </DialogActions>
       </Dialog>
     </React.Fragment>

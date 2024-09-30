@@ -58,12 +58,12 @@ const deleteTask = async (req, res) => {
 };
 
 const updateTask = async (req, res) => {
-  console.log(req.body.update);
+ 
   
 
   try {
     const updatedResult=await taskSchema.findOneAndUpdate({ _id: req.params.id },req.body.update);
-    console.log("hi")
+    
     if(updatedResult){
         res.status(201).json({
             message: "task updated sucessfully",
